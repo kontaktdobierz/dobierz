@@ -827,8 +827,18 @@
         <input type="tel" id="telefon" name="telefon">
       </div>
 
-      <!-- Widoczne dla: mam-cv, aplikuje-szeroko -->
-      <div data-form-panel data-pakiety="mam-cv aplikuje-szeroko" id="panel-cv-plik">
+      <!-- Widoczne tylko dla: aplikuje-szeroko — bo tu trzeba zapytać, w przeciwieństwie do pozostałych pakietów -->
+      <div data-form-panel data-pakiety="aplikuje-szeroko" id="panel-toggle-szeroko">
+        <div class="cv-toggle" role="group" aria-label="Czy masz już CV?">
+          <input type="radio" name="cv-status-szeroko" id="cv-szeroko-tak" checked onclick="pokazDlaSzeroko('tak')">
+          <label for="cv-szeroko-tak">Mam już CV</label>
+          <input type="radio" name="cv-status-szeroko" id="cv-szeroko-nie" onclick="pokazDlaSzeroko('nie')">
+          <label for="cv-szeroko-nie">Nie mam jeszcze CV</label>
+        </div>
+      </div>
+
+      <!-- Widoczne dla: mam-cv, aplikuje-szeroko (gdy zaznaczono "Mam już CV") -->
+      <div data-form-panel data-pakiety="mam-cv" id="panel-cv-plik">
         <div class="form-row">
           <label for="cv-plik">Wgraj swoje obecne CV (PDF, DOCX lub zdjęcie)</label>
           <input type="file" id="cv-plik" name="cv-plik">
@@ -859,7 +869,7 @@
         </div>
       </div>
 
-      <!-- Widoczne dla: cv-od-zera -->
+      <!-- Widoczne dla: cv-od-zera (zawsze), aplikuje-szeroko (gdy zaznaczono "Nie mam jeszcze CV") -->
       <div data-form-panel data-pakiety="cv-od-zera" id="panel-brak-cv">
         <div class="form-two">
           <div class="form-row">
@@ -888,6 +898,7 @@
 
       <button type="submit" class="btn btn-primary" style="width:100%; text-align:center; display:block;">Wyślij zamówienie</button>
       <p class="form-hint">Po wysłaniu odezwiemy się mailowo w sprawie płatności — realizacja startuje po jej potwierdzeniu.</p>
+      <p class="form-hint">Wysyłając formularz, akceptujesz naszą <a href="/polityka-prywatnosci.html" style="color:var(--ink-soft);">politykę prywatności</a>.</p>
     </form>
   </div>
 </section>
@@ -935,7 +946,7 @@
 
 <footer class="wrap">
   <div>Domierz — dopasowanie CV i listu motywacyjnego pod ogłoszenie.</div>
-  <div class="mono">kontakt@domierz.pl</div>
+  <div class="mono"><a href="/polityka-prywatnosci.html" style="color:inherit;">Polityka prywatności</a> · kontakt@domierz.pl</div>
 </footer>
 
 <script>
@@ -952,6 +963,15 @@
       var pasujace = (panel.getAttribute('data-pakiety') || '').split(' ');
       panel.style.display = pasujace.indexOf(pakiet) !== -1 ? 'block' : 'none';
     });
+    if (pakiet === 'aplikuje-szeroko') {
+      document.getElementById('cv-szeroko-tak').checked = true;
+      pokazDlaSzeroko('tak');
+    }
+  }
+  function pokazDlaSzeroko(stan){
+    // W pakiecie 79 zł to ten przełącznik decyduje, czy pokazać upload CV, czy pola "od zera"
+    document.getElementById('panel-cv-plik').style.display = (stan === 'tak') ? 'block' : 'none';
+    document.getElementById('panel-brak-cv').style.display = (stan === 'nie') ? 'block' : 'none';
   }
 </script>
 
