@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dziękujemy — Domierz</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F1F0EA; --paper-card:#FBFAF6; --ink:#1F2A24; --ink-soft:#4A554E;
+    --line:#C9C4B4; --red:#A8402F; --green:#3F5F45; --green-soft:#E3EADD;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+    background:var(--paper); color:var(--ink); font-family:'IBM Plex Sans', sans-serif;
+    padding:24px;
+  }
+  .card{
+    max-width:520px; background:var(--paper-card); border:1px solid var(--line);
+    padding:44px 36px; text-align:center;
+  }
+  .stamp-mini{
+    display:inline-block; border:2px solid var(--green); color:var(--green);
+    background:var(--green-soft); font-family:'IBM Plex Mono', monospace; font-size:0.72rem;
+    letter-spacing:0.04em; text-transform:uppercase; padding:6px 12px; margin-bottom:20px;
+    transform:rotate(-2deg);
+  }
+  h1{ font-family:'Fraunces', serif; font-weight:600; font-size:1.7rem; margin:0 0 14px; }
+  p{ color:var(--ink-soft); line-height:1.6; margin:0 0 10px; }
+  .steps{ text-align:left; margin:26px 0; padding:0; list-style:none; }
+  .steps li{
+    font-size:0.92rem; color:var(--ink-soft); padding:10px 0; border-top:1px dashed var(--line);
+  }
+  .steps li:first-child{ border-top:none; }
+  .steps b{ color:var(--ink); }
+  a.btn{
+    display:inline-block; margin-top:18px; font-family:'IBM Plex Mono', monospace; font-size:0.9rem;
+    text-decoration:none; padding:12px 20px; border-radius:2px; border:1.5px solid var(--ink);
+    color:var(--ink);
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <span class="stamp-mini">Zgłoszenie przyjęte</span>
+    <h1>Dziękujemy — mamy Twoje zgłoszenie</h1>
+    <p>Sprawdzimy je i odezwiemy się mailowo w ciągu kilku godzin z informacją o płatności i dalszych krokach.</p>
+    <ul class="steps">
+      <li><b>1.</b> Sprawdzamy Twoje zgłoszenie i ogłoszenie, do którego dopasowujemy CV.</li>
+      <li><b>2.</b> Wysyłamy Ci maila z danymi do płatności.</li>
+      <li><b>3.</b> Po opłaceniu przygotowujemy gotowe CV i list motywacyjny — do 24h (12h w pakiecie „Aplikuję szeroko”).</li>
+    </ul>
+    <p>Jeśli w ciągu dnia nic od nas nie dostaniesz, sprawdź folder SPAM lub napisz do nas: <b>kontakt@domierz.pl</b></p>
+    <a href="/" class="btn">Wróć na stronę główną</a>
+  </div>
+</body>
+</html>
