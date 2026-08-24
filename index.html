@@ -414,6 +414,78 @@
     margin-top:8px;
     font-size:0.8rem;
   }
+  .compare{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    border:1px solid var(--line);
+  }
+  @media (max-width:720px){ .compare{grid-template-columns:1fr;} }
+  .compare > div{
+    padding:26px 24px;
+  }
+  .compare .before{
+    background:var(--paper-card);
+    border-right:1px solid var(--line);
+  }
+  @media (max-width:720px){ .compare .before{ border-right:none; border-bottom:1px solid var(--line); } }
+  .compare .after{
+    background:#FBFAF6;
+  }
+  .compare-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    margin-bottom:14px;
+    display:inline-block;
+  }
+  .compare .before .compare-label{ color:var(--ink-soft); }
+  .compare .after .compare-label{ color:var(--green); }
+  .compare-field{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    margin:16px 0 4px;
+  }
+  .compare-field:first-of-type{ margin-top:0; }
+  .compare p.txt{
+    font-size:0.92rem;
+    line-height:1.55;
+    margin:0;
+    color:var(--ink);
+  }
+  .compare .before p.txt{ color:#8B8677; text-decoration:line-through; text-decoration-color:#C9C4B4; }
+
+  .checklist-card{
+    border:1px solid var(--line);
+    background:var(--paper-card);
+    padding:8px 28px;
+  }
+  .checklist-card li{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    padding:16px 0;
+    border-top:1px dashed var(--line);
+    list-style:none;
+  }
+  .checklist-card li:first-child{ border-top:none; }
+  .checklist-card .num{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--red);
+    font-size:0.85rem;
+    flex-shrink:0;
+    padding-top:1px;
+  }
+  .checklist-card p{
+    margin:0;
+    font-size:0.94rem;
+    color:var(--ink);
+    line-height:1.5;
+  }
+  .checklist-card ul{ margin:0; padding:0; }
 
   /* ---------- FORMULARZ ZAMÓWIENIA ---------- */
   .order-form{
@@ -673,11 +745,23 @@
     <div class="section-head">
       <div class="section-eyebrow">Dowód</div>
       <h2>Przykład: przed i po</h2>
-      <p>Prawdziwy fragment CV przed i po dopasowaniu pod ogłoszenie.</p>
+      <p>Fragment CV przed i po dopasowaniu pod ogłoszenie na stanowisko sprzedawcy — dane zmienione dla prywatności.</p>
     </div>
-    <div class="example-box">
-      Przykład przed/po pojawi się tutaj wkrótce.
-      <span class="mono">[miejsce zarezerwowane — dodamy w kolejnym etapie]</span>
+    <div class="compare">
+      <div class="before">
+        <span class="compare-label">Przed</span>
+        <div class="compare-field">Podsumowanie</div>
+        <p class="txt">Jestem uczniem technikum poszukującym swojej pierwszej pracy. Jestem osobą odpowiedzialną i zaangażowaną w wykonywane obowiązki.</p>
+        <div class="compare-field">Doświadczenie</div>
+        <p class="txt">Brak doświadczenia zawodowego.</p>
+      </div>
+      <div class="after">
+        <span class="compare-label">Po dopasowaniu</span>
+        <div class="compare-field">Podsumowanie</div>
+        <p class="txt">Uczeń technikum poszukujący pierwszej pracy w handlu. Odpowiedzialny i systematyczny, gotowy do wykładania i eksponowania towaru na sklepowych półkach. Dyspozycyjny w weekendy i w elastycznych godzinach.</p>
+        <div class="compare-field">Doświadczenie</div>
+        <p class="txt">Pełna dyspozycyjność w weekendy oraz w okresach wolnych od zajęć szkolnych — gotowość do szybkiego przyuczenia się do obowiązków związanych z wykładaniem towaru.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -687,14 +771,21 @@
     <div class="section-head">
       <div class="section-eyebrow">Zanim zapłacisz</div>
       <h2>Darmowe materiały</h2>
-      <p>Kilka rzeczy, które możesz sprawdzić sam, zanim zdecydujesz się na płatną usługę.</p>
+      <p>Sprawdź to sam, zanim zdecydujesz się na płatną usługę.</p>
     </div>
-    <div class="resource-card">
-      <div>
-        <h3>Checklista: Czy moje CV jest gotowe do wysłania?</h3>
-        <p>10 punktów do sprawdzenia w 5 minut, zanim wyślesz aplikację.</p>
-      </div>
-      <a href="#" class="btn btn-ghost">Wkrótce</a>
+    <div class="checklist-card">
+      <ul>
+        <li><span class="num">01</span><p>Tytuł CV zawiera dokładną nazwę stanowiska z ogłoszenia, nie ogólnikowe hasło.</p></li>
+        <li><span class="num">02</span><p>Podsumowanie na górze CV zawiera słowa kluczowe wprost z treści ogłoszenia.</p></li>
+        <li><span class="num">03</span><p>Każdy punkt w doświadczeniu opisuje efekt/obowiązek, nie tylko nazwę stanowiska.</p></li>
+        <li><span class="num">04</span><p>CV ma jedną kolumnę — dwie kolumny często gubią się w systemach ATS.</p></li>
+        <li><span class="num">05</span><p>Brak literówek i błędów — czytane na głos brzmi naturalnie.</p></li>
+        <li><span class="num">06</span><p>Dane kontaktowe (telefon, e-mail) są aktualne i łatwe do znalezienia na górze strony.</p></li>
+        <li><span class="num">07</span><p>Umiejętności dopasowane do konkretnej oferty, nie uniwersalna lista "z zapasu".</p></li>
+        <li><span class="num">08</span><p>Plik zapisany jako PDF (nie .docx ani zdjęcie) — tak, żeby wyglądał tak samo u każdego pracodawcy.</p></li>
+        <li><span class="num">09</span><p>Nazwa pliku zawiera Twoje imię i nazwisko, nie "CV(4)final_ostateczne.pdf".</p></li>
+        <li><span class="num">10</span><p>CV mieści się na jednej stronie (dwóch, jeśli masz kilka lat doświadczenia).</p></li>
+      </ul>
     </div>
   </div>
 </section>
