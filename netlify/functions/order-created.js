@@ -30,15 +30,20 @@ exports.handler = async (event) => {
     return { statusCode: 405, body: "Method not allowed" };
   }
 
-  let payload;
+  let body;
   try {
-    payload = JSON.parse(event.body);
+    body = JSON.parse(event.body);
   } catch (err) {
     return { statusCode: 400, body: "Nieprawidłowy payload" };
   }
 
-  // Netlify wysyła webhook w kształcie: { form_name, data: { ...pola... } }
+  // Netlify owija dane w dodatkową warstwę: { payload: { data: {...} } }.
+  // Ten kod działa niezależnie od tego, czy warstwa "payload" jest, czy nie.
+  const payload = body.payload || body;
   const dane = payload.data || {};
+
+  console.log("Odebrane pola formularza:", JSON.stringify(dane));
+
   const pakietKlucz = dane["pakiet"];
   const pakiet = PAKIETY[pakietKlucz] || { nazwa: "Nieznany pakiet", cena: "-" };
 
@@ -87,6 +92,8 @@ exports.handler = async (event) => {
         stopka: "Masz pytania? Po prostu odpisz na tego maila.",
       }),
     });
+  } else {
+    console.warn("Brak adresu e-mail klienta w zgłoszeniu — mail nie został wysłany.", zamowienie.id);
   }
 
   // 3. Powiadomienie dla właściciela
